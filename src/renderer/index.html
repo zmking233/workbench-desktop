@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src http://127.0.0.1:*; connect-src 'self' http://127.0.0.1:*">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工作台</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-chrome">
+    <div class="window-titlebar">
+      <div class="window-title"><strong>工作台</strong></div>
+    </div>
+    <nav class="app-menubar" aria-label="应用菜单">
+      <div class="app-menu">
+        <button class="app-menu-trigger" type="button" aria-haspopup="true" aria-expanded="false">文件</button>
+        <div class="app-menu-dropdown hidden" role="menu">
+          <button type="button" role="menuitem" data-menu-page="workbench"><span>AI 工作台</span><kbd>Ctrl+1</kbd></button>
+          <button type="button" role="menuitem" data-menu-action="choose-workspace"><span>切换工作区…</span><kbd>Ctrl+O</kbd></button>
+          <button type="button" role="menuitem" data-window-command="open-workspace"><span>打开工作区文件夹</span><kbd>Ctrl+Shift+O</kbd></button>
+          <button type="button" role="menuitem" data-menu-action="restart-harness"><span>重启 AI 工作台</span></button>
+          <div class="app-menu-separator"></div>
+          <button type="button" role="menuitem" data-window-command="close"><span>退出</span><kbd>Alt+F4</kbd></button>
+        </div>
+      </div>
+      <div class="app-menu">
+        <button class="app-menu-trigger" type="button" aria-haspopup="true" aria-expanded="false">编辑</button>
+        <div class="app-menu-dropdown hidden" role="menu">
+          <button type="button" role="menuitem" data-window-command="undo"><span>撤销</span><kbd>Ctrl+Z</kbd></button>
+          <button type="button" role="menuitem" data-window-command="redo"><span>重做</span><kbd>Ctrl+Y</kbd></button>
+          <div class="app-menu-separator"></div>
+          <button type="button" role="menuitem" data-window-command="cut"><span>剪切</span><kbd>Ctrl+X</kbd></button>
+          <button type="button" role="menuitem" data-window-command="copy"><span>复制</span><kbd>Ctrl+C</kbd></button>
+          <button type="button" role="menuitem" data-window-command="paste"><span>粘贴</span><kbd>Ctrl+V</kbd></button>
+          <button type="button" role="menuitem" data-window-command="select-all"><span>全选</span><kbd>Ctrl+A</kbd></button>
+        </div>
+      </div>
+      <div class="app-menu">
+        <button class="app-menu-trigger" type="button" aria-haspopup="true" aria-expanded="false">视图</button>
+        <div class="app-menu-dropdown hidden" role="menu">
+          <button type="button" role="menuitem" data-menu-page="workbench"><span>AI 工作台</span><kbd>Ctrl+1</kbd></button>
+          <button type="button" role="menuitem" data-menu-page="tokens"><span>Token 统计</span><kbd>Ctrl+2</kbd></button>
+          <div class="app-menu-separator"></div>
+          <button type="button" role="menuitem" data-window-command="reload"><span>刷新界面</span><kbd>Ctrl+R</kbd></button>
+          <button type="button" role="menuitem" data-window-command="zoom-in"><span>放大</span><kbd>Ctrl++</kbd></button>
+          <button type="button" role="menuitem" data-window-command="zoom-out"><span>缩小</span><kbd>Ctrl+-</kbd></button>
+          <button type="button" role="menuitem" data-window-command="zoom-reset"><span>实际大小</span><kbd>Ctrl+0</kbd></button>
+          <div class="app-menu-separator"></div>
+          <button type="button" role="menuitem" data-window-command="fullscreen"><span>切换全屏</span><kbd>F11</kbd></button>
+        </div>
+      </div>
+      <div class="app-menu">
+        <button class="app-menu-trigger" type="button" aria-haspopup="true" aria-expanded="false">窗口</button>
+        <div class="app-menu-dropdown hidden" role="menu">
+          <button type="button" role="menuitem" data-window-command="minimize"><span>最小化</span></button>
+          <button type="button" role="menuitem" data-window-command="maximize"><span>最大化／还原</span></button>
+          <button type="button" role="menuitem" data-window-command="fullscreen"><span>全屏</span><kbd>F11</kbd></button>
+          <div class="app-menu-separator"></div>
+          <button type="button" role="menuitem" data-window-command="close"><span>关闭窗口</span><kbd>Alt+F4</kbd></button>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <aside class="sidebar">
+    <div class="brand">
+      <strong>工作台</strong>
+    </div>
+    <nav>
+      <button class="nav-item active" data-page="workbench"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span class="nav-label">AI 工作台</span></button>
+      <button class="nav-item" data-page="tokens"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2M7 4.5 4.5 7"/></svg></span><span class="nav-label">Token 统计</span></button>
+      <button class="nav-item" data-page="skills"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 8 9-8 9-8-9 8-9Z"/><path d="M9.5 12 12 9.2l2.5 2.8L12 14.8 9.5 12Z"/></svg></span><span class="nav-label">Skill 管理</span></button>
+      <button class="nav-item" data-page="api"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="12" r="3.5"/><path d="M11.5 12H21M17 12v3M20 12v2"/></svg></span><span class="nav-label">API 开通指引</span></button>
+      <button class="nav-item" data-page="about"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.2v.3"/></svg></span><span class="nav-label">关于与许可</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div id="runtime-status" class="runtime-status"><i></i><span>正在启动…</span></div>
+      <button id="restart-harness" class="text-button">重启工作台</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section id="page-workbench" class="page active full-page">
+      <header class="topbar">
+        <div><h1>AI 工作台</h1><p id="workspace-label">正在读取工作区…</p></div>
+        <button id="choose-workspace" class="secondary-button">切换工作区</button>
+      </header>
+      <div id="harness-placeholder" class="placeholder">
+        <div class="spinner"></div>
+        <h2>正在准备本地工作台</h2>
+        <p>第一次启动可能需要稍等片刻。</p>
+      </div>
+      <webview id="harness-view" partition="persist:workbench" class="harness-view"></webview>
+      <div class="ai-disclaimer">AI 生成，仅供辅助参考</div>
+    </section>
+
+    <section id="page-tokens" class="page content-page">
+      <header class="topbar">
+        <div><h1>Token 用量统计</h1><p>汇总 DeepSeek Harness 持久会话中的提供方用量记录。</p></div>
+        <button id="refresh-token-stats" class="secondary-button">刷新统计</button>
+      </header>
+      <div class="token-dashboard">
+        <div class="metric-grid">
+          <article class="metric-card primary"><span>累计 Token</span><strong id="token-total">—</strong><small>输入与输出合计</small></article>
+          <article class="metric-card"><span>计费输入</span><strong id="token-input">—</strong><small>未缓存 + 缓存读取 + 缓存写入</small></article>
+          <article class="metric-card"><span>输出 Token</span><strong id="token-output">—</strong><small>推理 Token 已包含在内</small></article>
+          <article class="metric-card"><span>缓存读取</span><strong id="token-cache-read">—</strong><small>提供方报告的缓存命中部分</small></article>
+        </div>
+        <article class="token-table-card">
+          <div class="card-heading"><div><h2>会话明细</h2><p id="token-updated">等待读取…</p></div><span id="token-session-count" class="secure-badge">0 个会话</span></div>
+          <div class="token-table-head"><span>会话</span><span>输入</span><span>缓存读取</span><span>输出</span><span>合计</span></div>
+          <div id="token-session-list" class="token-session-list"><div class="token-empty">暂无可统计的用量记录。</div></div>
+        </article>
+        <div class="notice token-notice">这里展示 Harness 会话日志中的提供方用量投影；缺少提供方记录时不会编造数据。本页不是 DeepSeek 账单，最终费用和额度请以开放平台为准。</div>
+      </div>
+    </section>
+
+    <section id="page-skills" class="page">
+      <header class="topbar">
+        <div><h1>Skill 管理</h1><p>管理 AI 的专业工作流程。所有修改只保存在你的电脑中。</p></div>
+        <div class="button-row">
+          <button id="import-skill" class="secondary-button">导入</button>
+          <button id="new-skill" class="primary-button">＋ 新建 Skill</button>
+        </div>
+      </header>
+      <div class="skills-layout">
+        <aside class="skills-list-panel">
+          <div class="list-heading"><strong>已安装</strong><span id="skill-count">0</span></div>
+          <div id="skills-list" class="skills-list"></div>
+        </aside>
+        <div id="skill-empty" class="empty-state">
+          <div class="empty-icon">◇</div><h2>还没有 Skill</h2><p>可以新建或导入自己的 Skill，软件不会预装任何 Skill。</p>
+        </div>
+        <article id="skill-editor" class="skill-editor hidden">
+          <div class="editor-heading">
+            <div><div class="eyebrow" id="skill-kind">自定义 Skill</div><h2 id="skill-name"></h2></div>
+            <label class="switch"><input id="skill-enabled" type="checkbox"><span></span><b>启用</b></label>
+          </div>
+          <div id="skill-validation" class="validation-box hidden"></div>
+          <label class="field-label" for="skill-content">SKILL.md 内容</label>
+          <textarea id="skill-content" spellcheck="false"></textarea>
+          <div class="editor-actions">
+            <button id="delete-skill" class="danger-button">移到回收站</button>
+            <div class="grow"></div>
+            <button id="export-skill" class="secondary-button">导出</button>
+            <button id="save-skill" class="primary-button">保存修改</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="page-api" class="page content-page">
+      <header class="topbar"><div><h1>API 开通指引</h1><p>按顺序完成四步，即可开始使用。模型费用由 DeepSeek 开放平台直接收取。</p></div></header>
+      <div class="guide-grid">
+        <div class="steps-card">
+          <div class="step"><b>1</b><div><h3>注册或登录</h3><p>前往 DeepSeek 开放平台完成账号登录。</p><button data-link="https://platform.deepseek.com/sign_in" class="link-button">打开登录页面 ↗</button></div></div>
+          <div class="step"><b>2</b><div><h3>充值余额</h3><p>按使用量付费。购买前请在官方页面确认最新价格与条款。</p><button data-link="https://platform.deepseek.com/top_up" class="link-button">打开充值页面 ↗</button></div></div>
+          <div class="step"><b>3</b><div><h3>创建 API Key</h3><p>创建后请立即复制并妥善保管，切勿通过聊天、邮件或截图发送给他人。</p><button data-link="https://platform.deepseek.com/api_keys" class="link-button">打开密钥页面 ↗</button></div></div>
+          <div class="step"><b>4</b><div><h3>安全保存到本机</h3><p>密钥使用 Windows 系统加密后保存，不会显示完整内容。</p></div></div>
+        </div>
+        <div class="api-card">
+          <div class="secure-badge">Windows 加密存储</div>
+          <h2>连接 DeepSeek API</h2>
+          <p id="api-status-text">尚未配置 API Key</p>
+          <label class="field-label" for="api-key">API Key</label>
+          <input id="api-key" type="password" autocomplete="off" placeholder="sk-••••••••••••••••">
+          <button id="save-api-key" class="primary-button wide">保存并重启工作台</button>
+          <button id="clear-api-key" class="text-button wide">清除已保存密钥</button>
+          <div class="privacy-note">本软件只负责本地保存与调用。API 账户、余额、发票和服务条款均由 DeepSeek 开放平台管理。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-about" class="page content-page">
+      <header class="topbar"><div><h1>关于与许可</h1><p>产品关系、隐私规则和第三方许可信息。</p></div></header>
+      <div class="about-card">
+        <h2 class="about-product-name">工作台</h2>
+        <p id="version-label">版本读取中…</p>
+        <p id="rtk-version-label">命令输出优化组件正在检查…</p>
+        <div class="divider"></div>
+        <h3>与 DeepSeek 的关系</h3>
+        <p>“工作台”是独立开发和发行的第三方桌面软件，基于开源 DeepSeek Harness 构建，并允许用户使用自己的 DeepSeek API Key 连接 DeepSeek 开放平台。本产品并非 DeepSeek 官方产品，与 DeepSeek 不存在联合开发、代理、认证、授权销售或品牌背书关系。DeepSeek 账户、API 服务、模型、余额、计费和平台条款由 DeepSeek 独立提供和管理。</p>
+        <div class="divider"></div>
+        <h3>隐私政策摘要</h3>
+        <p>工作区、Skill、设置和加密后的 API Key 默认保存在本机。只有在用户使用 AI 功能时，输入内容、所选文件内容、必要的会话上下文以及 Harness 生成的匿名标识和会话标识才会发送至所配置的模型服务。软件默认不启用发行方遥测。</p>
+        <p>请勿提交无权处理的个人信息、商业秘密、国家秘密或其他受保护数据。完整规则、数据删除方式和第三方处理说明以《工作台隐私政策》为准。</p>
+        <div class="about-actions">
+          <button id="show-privacy-policy" class="primary-button">查看隐私政策</button>
+          <button id="open-licenses" class="secondary-button">查看第三方许可文件</button>
+        </div>
+        <div class="divider"></div>
+        <h3>开源组件归属</h3>
+        <p>DeepSeek Harness 采用 MIT License；内置 Rust Token Killer 采用 Apache License 2.0。第三方组件的名称仅用于说明技术来源，不表示相关项目对本产品进行背书。</p>
+      </div>
+    </section>
+  </main>
+  <div id="privacy-modal" class="modal privacy-modal hidden" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+    <div class="modal-card privacy-card">
+      <div class="privacy-heading">
+        <div><div class="eyebrow">首次使用确认</div><h2 id="privacy-title">工作台隐私政策</h2><p>版本 2026-08-16.1</p></div>
+        <button id="close-privacy-policy" type="button" class="modal-close hidden" aria-label="关闭">×</button>
+      </div>
+      <div id="privacy-content" class="privacy-content" tabindex="0">
+        <h3>一、适用范围</h3>
+        <p>本政策说明“工作台”在本机运行和调用第三方模型服务时如何处理信息。当前为功能测试版本，正式销售前将在此补充发行主体、联系地址和隐私事务联系方式。</p>
+        <h3>二、本机保存的信息</h3>
+        <p>软件在本机保存工作区路径、用户创建或导入的 Skill、应用设置、会话与 Token 用量记录以及运行日志。API Key 使用 Windows 安全存储加密保存，界面不会回显完整密钥。</p>
+        <h3>三、发送至模型服务的信息</h3>
+        <p>只有在用户使用 AI 功能时，用户输入、所选或引用的文件内容、必要的对话上下文、工具调用信息，以及 DeepSeek Harness 生成的稳定匿名用户标识和会话标识，才会发送至用户配置的模型服务。使用 DeepSeek API 时，接收方为 DeepSeek 开放平台，其处理活动同时受 DeepSeek 公布的协议和隐私政策约束。</p>
+        <h3>四、敏感信息</h3>
+        <p>用户应确认自己具有合法处理和发送相关信息的权限，并在发送前进行必要的筛选、脱敏和授权确认。不得提交国家秘密、无权披露的商业秘密或其他依法禁止传输的数据。</p>
+        <h3>五、遥测与第三方服务</h3>
+        <p>软件默认关闭发行方遥测和 RTK 遥测，不会把用户内容上传到发行方服务器。第三方模型服务仍可能根据其自身规则记录 API 请求。</p>
+        <h3>六、保存期限与用户控制</h3>
+        <p>本机数据持续保存至用户主动删除。用户可以在工作目录和 Skill 管理中管理文件，可以在 API 页面清除密钥，并可通过 Windows 应用数据目录清除会话和运行记录。卸载软件不会自动删除用户选择的工作目录。</p>
+        <h3>七、政策更新与联系</h3>
+        <p>政策发生实质变化时，软件将再次请求确认。功能测试期间请通过软件取得渠道反馈隐私问题；正式销售版将提供明确的发行主体、客服和隐私联系方式。</p>
+      </div>
+      <label id="privacy-consent-row" class="privacy-consent"><input id="privacy-consent" type="checkbox"><span>我已阅读并同意《工作台隐私政策》，并知悉使用 AI 功能时相关内容会发送至第三方模型服务。</span></label>
+      <div id="privacy-first-run-actions" class="modal-actions"><button id="decline-privacy" type="button" class="secondary-button">不同意并退出</button><button id="accept-privacy" type="button" class="primary-button" disabled>同意并继续</button></div>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="renderer.js"></script>
+</body>
+</html>

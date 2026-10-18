@@ -1,0 +1,10 @@
+node_modules/
+release/
+dist/
+win-unpacked/
+.tmp*/
+upstream-package/
+build/*.png
+*.log
+.env
+licenses/THIRD-PARTY-NOTICES.txt

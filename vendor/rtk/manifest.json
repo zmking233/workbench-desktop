@@ -1,0 +1,10 @@
+{
+  "name": "Rust Token Killer",
+  "command": "rtk",
+  "version": "0.45.0",
+  "source": "https://github.com/rtk-ai/rtk/releases/tag/v0.45.0",
+  "archive": "rtk-x86_64-pc-windows-msvc.zip",
+  "archiveSha256": "34cea9009a8099acdaf85147b971d95f65efabfa63fb3aea7d3e2b73e6f517c3",
+  "binarySha256": "888ecfcc7ca6ceaf9170cf95027d196d6010c7d1a1892b3662b4bb61f18a3618",
+  "license": "Apache-2.0"
+}

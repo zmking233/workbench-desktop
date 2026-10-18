@@ -1,0 +1,11 @@
+# Desktop distribution: use the in-app filesystem browser instead of spawning
+# the upstream Win32 COM picker. This keeps workspace selection reliable in a
+# packaged Electron process while preserving the same directory-picker API.
+- id: directory-picker
+  disabled: true
+
+- insert:
+    - id: directory-picker-browse
+      name: '@deepseek-ai/dsh-host-directory-picker-browse'
+    - id: directory-picker-ui-browse
+      name: '@deepseek-ai/dsh-client-ui-directory-picker-browse'
